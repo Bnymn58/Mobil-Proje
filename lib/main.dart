@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(
-        title: Text("Flutter Yazılımım basla"),
+        title: Text("Flutter Yazılımım"),
       ),
 
       body: Container(
