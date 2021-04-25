@@ -112,6 +112,23 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
 
+          MaterialButton(
+            splashColor: Colors.green,
+            color: Colors.blue,
+            onPressed: _submit,
+            child: Text(
+              "Material Button",
+              style: TextStyle(fontSize: 20.0,
+                color: Colors.white,
+              ),
+
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+
+
 
           Padding(
             padding: const EdgeInsets.all(58.0),
