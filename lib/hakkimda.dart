@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-
+import 'package:flutter_app/ana_sayfa.dart';
 
 class Hakkinda extends StatefulWidget{
   @override
@@ -42,17 +42,24 @@ class _HakkindaState extends State<Hakkinda> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Text("BİZİMKİSİ BİR WİDGET HİKAYESİ... :)"
-                          ""
-                          "      Basit Bir Kişisel Teknolojik Asistan Yazılımıdır. Rutin ve Gündelik verileri tutmaya yardımcı olur. ",
-                          style: TextStyle(fontFamily: 'RobotoMono',color: Colors.blue,fontSize: 20,fontWeight:FontWeight.bold),
+                      child:Column(
+                        children: <Widget>[
+                          Text("BİZİMKİSİ BİR WİDGET HİKAYESİ... :)\t",
+                            style: TextStyle(fontFamily: 'RobotoMono',color: Colors.blue,fontSize: 20,fontWeight:FontWeight.bold)
+                          ),
+                          Icon(Icons.double_arrow,size: 40.0,),
+                          Text("Basit Bir Kişisel Teknolojik Asistan Yazılımıdır. Rutin ve Gündelik verileri tutmaya yardımcı olur.",
+                            style: TextStyle(fontFamily: 'RobotoMono',color: Colors.blue,fontSize: 20,fontWeight:FontWeight.bold)
+                          ),
+                        ],
+                      ), 
                       ),
                     ),
-                  ),
+ 
                     Container(
                       child: Padding(
                         padding: const EdgeInsets.all(70.0),
-                        child: ElevatedButton(
+                        child: ElevatedButton( //ANASAYFAYA DÖNDÜRÜR
                           onPressed: () {
                             Navigator.pushNamed(context, '/');
                           },

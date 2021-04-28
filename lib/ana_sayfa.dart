@@ -1,103 +1,136 @@
-import 'package:flutter/material.dart';
-import 'package:marquee/marquee.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_app/hakkimda.dart';
-import 'package:flutter_app/login_page.dart';
-import 'package:flutter_app/ana_sayfa.dart';
-import 'package:flutter_app/main.dart';
+import 'dart:ffi';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_app/class_lib.dart';
 
 class Ana_Giris extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner:false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-      ),
-      home: MyHomePage(title: 'İlk Flutter Yazılım'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  TabController tabController;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter += 2;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    void _submit() {
-      setState(() {
-
-      });
-    }
-    return Scaffold(
-      backgroundColor: Colors.cyan,
-      appBar: AppBar(
-        title: Text("Flutter Yazılımım"),
+  List<Widget> sayfalar = [
+    Tab(
+      text: "Galatasaray",
+      icon: Icon(Icons.contacts_outlined),
+    ),
+    Tab(
+      text: "3DS MAX",
+      icon: Icon(
+        Icons.design_services,
       ),
-
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-              image:AssetImage("images/image1.jpg"),
-              fit:BoxFit.cover,
-            )
-        ),
-        child:Column(
-          children: [
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Hakkinda()),
-                );
-              },
-              child: Text('Hakkında'),
-            ),
-
-
+    ),
+    Tab(
+      text: "Dersler",
+      icon: Icon(Icons.book_online),
+    ),
+    Tab(
+      text: "Kitaplar",
+      icon: Icon(Icons.book_online),
+    ),
+    Tab(
+      text: "Hobiler",
+      icon: Icon(Icons.sports_bar),
+    ),
+    hakkindaYaz(),
+  ];
+  List<Widget> bodydesing = [
+    Center(
+      child: Image(image: AssetImage("images/image1.jpg")),
+    ),
+    Center(
+      child: Image(image: AssetImage("images/image4.jpg")),
+    ),
+    ders_listele(),
+    Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage("images/image3.jpg"),
+        fit: BoxFit.cover,
+      )),
+      child: Center(
+        child: Stack(
+          //ŞEKİLLİ YAZI
+          children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(58.0),
-              child: Center(
-                child: MaterialButton(
-                  splashColor: Colors.yellow,
-                  color: Colors.red,
-                  onPressed: () {},
-                  child: Text(
-                    "Material Button2",
-                    style: TextStyle(fontSize: 20.0,
-                      color: Colors.white,
-                    ),
-
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                'Yaşadığımız dönemin en büyük cahili, diploma almayı eğitim sananlardır..!',
+                style: TextStyle(
+                  fontSize: 30,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 3
+                    ..color = Colors.blue[700],
+                ),
+              ),
+            ),
+            // Solid text as fill.
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                'Yaşadığımız dönemin en büyük cahili, diploma almayı eğitim sananlardır..!',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.redAccent[300],
                 ),
               ),
             ),
           ],
-
         ),
+      ),
+    ),
+    Center(
+      child: Image(image: AssetImage("images/image1.jpg")),
+    ),
+    Center(
+      child: Text(
+        "BUTTON \t THE \t CLICK :)",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0,
+        ),
+      ),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: sayfalar.length, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("KİŞİSEL ASİSTANIM"),
+        centerTitle: true,
+        bottom: TabBar(
+          labelColor: Colors.white,
+          indicatorColor: Colors.white, //tıklanınca altını çizen kod
+          isScrollable: true, //kayar menü
+          unselectedLabelStyle: TextStyle(fontSize: 15),
+          controller: tabController,
+          tabs: sayfalar,
+        ),
+      ),
+      body: TabBarView(
+        controller: tabController,
+        children: bodydesing,
       ),
     );
   }
