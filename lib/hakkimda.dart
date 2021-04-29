@@ -35,7 +35,20 @@ class _HakkindaState extends State<Hakkinda> {
                       ,style: TextStyle(fontFamily: 'RobotoMono',fontSize: 14,fontWeight:FontWeight.bold),
                       ),
                     ),
+                  ),                   
+                  Container(
+                     decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent)
+                      ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text("Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3301456 kodlu MOBİL PROGRAMLAMA dersi kapsamında"
+                      " 203311090 numaralı Bünyamin Gençtürk tarafından 30 Nisan 2021 günü yapılmıştır."								
+                      ,style: TextStyle(fontFamily: 'RobotoMono',fontSize: 14,fontWeight:FontWeight.bold,),
+                      ),
+                    ),
                   ),
+
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.blueAccent)
@@ -55,10 +68,11 @@ class _HakkindaState extends State<Hakkinda> {
                       ), 
                       ),
                     ),
- 
+
+
                     Container(
                       child: Padding(
-                        padding: const EdgeInsets.all(70.0),
+                        padding: const EdgeInsets.only(left:70.0,right:70.0),
                         child: ElevatedButton( //ANASAYFAYA DÖNDÜRÜR
                           onPressed: () {
                             Navigator.pushNamed(context, '/');

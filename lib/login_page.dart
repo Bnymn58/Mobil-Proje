@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text("Şifremi Unuttum"), onPressed: () {}),
                   ],
                 ),
-                _loginButton(),
+                _loginButton2(),
               ],
             ),
           ),
