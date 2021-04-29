@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -9,7 +8,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String username;
   String password;
-  
+
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -22,10 +21,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-              image: AssetImage("images/image2.jpg"),
-              fit: BoxFit.cover,
-            )
-          ),
+            image: AssetImage("images/image2.jpg"),
+            fit: BoxFit.cover,
+          )),
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Column(
@@ -71,9 +69,13 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: "Kullanıcı Adı(bg)",
                     labelStyle: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.bold),
-                    
-                    focusedBorder: new OutlineInputBorder( //Texte düz ve mavi Border verir
-                      borderSide: new BorderSide(color: Colors.blue, width:3.0,),
+
+                    focusedBorder: new OutlineInputBorder(
+                      //Texte düz ve mavi Border verir
+                      borderSide: new BorderSide(
+                        color: Colors.blue,
+                        width: 3.0,
+                      ),
                     ),
                   ),
                   validator: (value) {
@@ -101,9 +103,12 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: "Şifre(58)",
                     labelStyle: TextStyle(
                         color: Colors.red, fontWeight: FontWeight.bold),
-
-                    focusedBorder: new OutlineInputBorder( //Texte düz ve mavi Border verir
-                      borderSide: new BorderSide(color: Colors.blue, width:3.0,),
+                    focusedBorder: new OutlineInputBorder(
+                      //Texte düz ve mavi Border verir
+                      borderSide: new BorderSide(
+                        color: Colors.blue,
+                        width: 3.0,
+                      ),
                     ),
                   ),
                   validator: (value) {
@@ -126,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text("Şifremi Unuttum"), onPressed: () {}),
                   ],
                 ),
-                _loginButton2(),
+                _loginButton(),
               ],
             ),
           ),
@@ -136,12 +141,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   //KONTROLSÜZ GİRİŞ
-    Widget _loginButton2() => RaisedButton(
+  Widget _loginButton2() => RaisedButton(
       child: Text("Giriş Yap"),
       onPressed: () {
-
-            Navigator.pushNamed(context, "/homepage");
-
+        Navigator.pushNamed(context, "/homepage");
       });
 
   Widget _loginButton() => RaisedButton(
@@ -169,8 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () => Navigator.pop(context)),
                     ],
                   );
-                }
-            );
+                });
           }
         }
       });
