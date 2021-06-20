@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:flutter_app/ana_sayfa.dart';
+import 'package:flutter/gestures.dart';
+import 'dart:math' as math;
 
 class Hakkinda extends StatefulWidget{
   @override

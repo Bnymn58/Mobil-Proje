@@ -1,31 +1,114 @@
 import 'dart:ffi';
 import 'dart:math';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/class_lib.dart';
+import 'package:flutter/gestures.dart';
+import 'dart:math' as math;
+import 'package:path_provider/path_provider.dart';
+import 'file_utils.dart';
+import 'package:flutter_app/file_operations.dart';
+import 'package:http/http.dart';
+import 'package:open_file/open_file.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
 
 class Ana_Giris extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: AnaSayfa(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+
+class AnaSayfa extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AnaSayfaState createState() => _AnaSayfaState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+class _AnaSayfaState extends State<AnaSayfa> with TickerProviderStateMixin {
   TabController tabController;
+  String fileContents = "Veri Yok";
+  final myController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: sayfalar.length, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context)=>DefaultTabController(
+    length: 8,
+    child: Scaffold(
+        appBar: AppBar(
+
+          title: Text("Kişisel Asistanım"),
+          titleSpacing: 0,
+          leading:IconButton(
+            icon:Icon(Icons.menu),
+            onPressed: (){
+
+            },
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.notifications_none),
+                onPressed: (){
+
+                }
+            ),
+            IconButton(
+                icon: Icon(Icons.search),
+                onPressed: (){
+
+                }
+            ),
+          ],
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              image:DecorationImage(
+                  image:AssetImage("assets/images/wallpaper.jpg"),
+                  fit: BoxFit.cover,
+              ),
+              ),
+            ),
+
+          bottom: TabBar(
+            labelColor: Colors.white,
+            indicatorColor: Colors.blue, //tıklanınca altını çizen kod
+            isScrollable: true, //kayar menü
+            unselectedLabelStyle: TextStyle(fontSize: 15),
+            controller: tabController,
+            tabs: sayfalar,
+          ),
+        ),
+
+        body:Container(
+          child:TabBarView(
+            controller: tabController,
+            children: bodydesing,
+          ) ,
+        )
+
+      ),
+  );
+
+  //RESİMLER LİSTESİ
+
+  @override
   List<Widget> sayfalar = [
     Tab(
       text: "Galatasaray",
       icon: Icon(Icons.contacts_outlined),
+    ),
+    Tab(
+      text: "Günlük",
+      icon: Icon(Icons.app_registration),
     ),
     Tab(
       text: "3DS MAX",
@@ -47,18 +130,45 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     ),
     hakkindaYaz(),
   ];
+
   List<Widget> bodydesing = [
     Center(
-      child: Image(image: AssetImage("images/image1.jpg")),
+
+      //child: Image(image: AssetImage("assets/images/image1.jpg")),
     ),
     Center(
-      child: Image(image: AssetImage("images/image4.jpg")),
+      child: Column(
+        mainAxisAlignment:MainAxisAlignment.end,
+        children: <Widget>[
+          //ElevatedButton(onPressed: (){}, child:Text("Günlük Ekleme")),
+
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: FloatingActionButton(
+              child:Icon(Icons.add),
+                backgroundColor: Colors.orangeAccent,
+                onPressed:(){
+
+
+                },
+            ),
+          ),
+
+
+        ],
+      ),
+
+
+      //child: Image(image: AssetImage("assets/images/image1.jpg")),
     ),
+
+    resimler(),
+
     ders_listele(),
     Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-        image: AssetImage("images/image3.jpg"),
+        image: AssetImage("assets/images/image3.jpg"),
         fit: BoxFit.cover,
       )),
       child: Center(
@@ -94,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       ),
     ),
     Center(
-      child: Image(image: AssetImage("images/image1.jpg")),
+      child: Image(image: AssetImage("assets/images/image1.jpg")),
     ),
     Center(
       child: Text(
@@ -103,35 +213,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           fontWeight: FontWeight.bold,
           fontSize: 30.0,
         ),
+
       ),
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: sayfalar.length, vsync: this);
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("KİŞİSEL ASİSTANIM"),
-        centerTitle: true,
-        bottom: TabBar(
-          labelColor: Colors.white,
-          indicatorColor: Colors.white, //tıklanınca altını çizen kod
-          isScrollable: true, //kayar menü
-          unselectedLabelStyle: TextStyle(fontSize: 15),
-          controller: tabController,
-          tabs: sayfalar,
-        ),
-      ),
-      body: TabBarView(
-        controller: tabController,
-        children: bodydesing,
-      ),
-    );
-  }
+
+
 }
