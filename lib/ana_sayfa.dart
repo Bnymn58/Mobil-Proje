@@ -16,7 +16,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_app/models/Data_class.dart';
 import 'package:flutter_app/sql/sql_pagedesign.dart';
 import 'package:flutter_app/graphics_and_animation.dart';
-
+import 'package:flutter_app/sql/firebase_datebase.dart';
 
 
 class Ana_Giris extends StatefulWidget {
@@ -57,7 +57,7 @@ class _Ana_GirisState extends State<Ana_Giris>with TickerProviderStateMixin {
       icon: Icon(Icons.book_online),
     ),
     Tab(
-      text: "Kitaplar",
+      text: "Özel Sözler",
       icon: Icon(Icons.book_online),
     ),
     Tab(
@@ -137,45 +137,7 @@ class _Ana_GirisState extends State<Ana_Giris>with TickerProviderStateMixin {
     resimler(),
 
     ders_listele(),
-    Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/image3.jpg"),
-            fit: BoxFit.cover,
-          )),
-      child: Center(
-        child: Stack(
-          //ŞEKİLLİ YAZI
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Yaşadığımız dönemin en büyük cahili, diploma almayı eğitim sananlardır..!',
-                style: TextStyle(
-                  fontSize: 30,
-                  foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 3
-                    ..color = Colors.blue[700],
-                ),
-              ),
-            ),
-            // Solid text as fill.
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Yaşadığımız dönemin en büyük cahili, diploma almayı eğitim sananlardır..!',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.redAccent[300],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-
+    Firebase_data(),
     LineChartSample1(),
     hakkinda_renkli(),
   ];

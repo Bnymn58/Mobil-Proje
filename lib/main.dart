@@ -14,6 +14,7 @@ import 'package:path/path.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_app/models/Data_class.dart';
 import 'package:flutter_app/loginpage/login_pages1.dart';
+import 'package:uuid/uuid.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,8 +26,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       routes: {
-       "/":(context)=>Ana_Giris(),
-        //"/":(context)=>Login_pages1(),
+       //"/":(context)=>Ana_Giris(),
+        "/":(context)=>Login_pages1(),
         //"/":(context)=>FileOperationsScreen(),
         "/gunluk":(context)=>FileOperationsScreen(),
         "/indir":(context)=>FileDownloadView(),
