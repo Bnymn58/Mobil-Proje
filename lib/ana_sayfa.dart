@@ -12,94 +12,30 @@ import 'package:http/http.dart';
 import 'package:open_file/open_file.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_app/models/Data_class.dart';
+import 'package:flutter_app/sql/sql_pagedesign.dart';
+import 'package:flutter_app/graphics_and_animation.dart';
 
 
-class Ana_Giris extends StatelessWidget {
+
+class Ana_Giris extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AnaSayfa(),
-    );
-  }
+  _Ana_GirisState createState() => _Ana_GirisState();
 }
 
+class _Ana_GirisState extends State<Ana_Giris>with TickerProviderStateMixin {
 
-class AnaSayfa extends StatefulWidget {
-  @override
-  _AnaSayfaState createState() => _AnaSayfaState();
-}
-
-class _AnaSayfaState extends State<AnaSayfa> with TickerProviderStateMixin {
   TabController tabController;
   String fileContents = "Veri Yok";
   final myController = TextEditingController();
 
+
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: sayfalar.length, vsync: this);
+    tabController = TabController(length: sayfalar.length,vsync: this);
   }
-
-  @override
-  Widget build(BuildContext context)=>DefaultTabController(
-    length: 8,
-    child: Scaffold(
-        appBar: AppBar(
-
-          title: Text("Kişisel Asistanım"),
-          titleSpacing: 0,
-          leading:IconButton(
-            icon:Icon(Icons.menu),
-            onPressed: (){
-
-            },
-          ),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.notifications_none),
-                onPressed: (){
-
-                }
-            ),
-            IconButton(
-                icon: Icon(Icons.search),
-                onPressed: (){
-
-                }
-            ),
-          ],
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              image:DecorationImage(
-                  image:AssetImage("assets/images/wallpaper.jpg"),
-                  fit: BoxFit.cover,
-              ),
-              ),
-            ),
-
-          bottom: TabBar(
-            labelColor: Colors.white,
-            indicatorColor: Colors.blue, //tıklanınca altını çizen kod
-            isScrollable: true, //kayar menü
-            unselectedLabelStyle: TextStyle(fontSize: 15),
-            controller: tabController,
-            tabs: sayfalar,
-          ),
-        ),
-
-        body:Container(
-          child:TabBarView(
-            controller: tabController,
-            children: bodydesing,
-          ) ,
-        )
-
-      ),
-  );
-
-  //RESİMLER LİSTESİ
-
   @override
   List<Widget> sayfalar = [
     Tab(
@@ -125,52 +61,88 @@ class _AnaSayfaState extends State<AnaSayfa> with TickerProviderStateMixin {
       icon: Icon(Icons.book_online),
     ),
     Tab(
-      text: "Hobiler",
-      icon: Icon(Icons.sports_bar),
+      text: "Grafik",
+      icon: Icon(Icons.add_chart),
     ),
     hakkindaYaz(),
   ];
 
-  List<Widget> bodydesing = [
-    Center(
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return DefaultTabController(
+      length: 8,
+      child: Scaffold(
+        appBar: AppBar(
 
-      //child: Image(image: AssetImage("assets/images/image1.jpg")),
-    ),
-    Center(
-      child: Column(
-        mainAxisAlignment:MainAxisAlignment.end,
-        children: <Widget>[
-          //ElevatedButton(onPressed: (){}, child:Text("Günlük Ekleme")),
+        title: Text("Kişisel Asistanım"),
+        titleSpacing: 0,
+        leading:IconButton(
+          icon:Icon(Icons.menu),
+          onPressed: (){
 
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: FloatingActionButton(
-              child:Icon(Icons.add),
-                backgroundColor: Colors.orangeAccent,
-                onPressed:(){
+          },
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.notifications_none),
+              onPressed: (){
 
+              }
+          ),
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: (){
 
-                },
+              }
+          ),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image:DecorationImage(
+              image:AssetImage("assets/images/wallpaper.jpg"),
+              fit: BoxFit.cover,
             ),
           ),
+        ),
 
-
-        ],
+        bottom: TabBar(
+          labelColor: Colors.white,
+          indicatorColor: Colors.blue, //tıklanınca altını çizen kod
+          isScrollable: true, //kayar menü
+          unselectedLabelStyle: TextStyle(fontSize: 15),
+          controller: tabController,
+          tabs: sayfalar,
+        ),
       ),
 
+        body:Container(
+          child:TabBarView(
+            controller: tabController,
+            children: bodydesing,
+          ) ,
+        ),
 
-      //child: Image(image: AssetImage("assets/images/image1.jpg")),
+    ),
+    );
+  }
+
+  @override
+  List<Widget> bodydesing = [
+    Center(
+      child: Image(image: AssetImage("assets/images/image1.jpg")),
     ),
 
+    bilgi_cek(),
     resimler(),
 
     ders_listele(),
     Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-        image: AssetImage("assets/images/image3.jpg"),
-        fit: BoxFit.cover,
-      )),
+            image: AssetImage("assets/images/image3.jpg"),
+            fit: BoxFit.cover,
+          )),
       child: Center(
         child: Stack(
           //ŞEKİLLİ YAZI
@@ -203,22 +175,12 @@ class _AnaSayfaState extends State<AnaSayfa> with TickerProviderStateMixin {
         ),
       ),
     ),
-    Center(
-      child: Image(image: AssetImage("assets/images/image1.jpg")),
-    ),
-    Center(
-      child: Text(
-        "BUTTON \t THE \t CLICK :)",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 30.0,
-        ),
 
-      ),
-    ),
+    LineChartSample1(),
+    hakkinda_renkli(),
   ];
 
 
-
-
 }
+
+//debugShowCheckedModeBanner: false,

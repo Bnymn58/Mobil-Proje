@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "374213319588",
+    "project_id": "kisisel-asistan",
+    "storage_bucket": "kisisel-asistan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374213319588:android:508a92775b8f9aa51c3f31",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374213319588-kv4rdali3qjdd4j6skd7i7s22p0rs1r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHLOIIz_8hrEkOqmAcF1hyuvutySNeBR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374213319588-kv4rdali3qjdd4j6skd7i7s22p0rs1r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

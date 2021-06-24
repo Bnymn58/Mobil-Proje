@@ -44,8 +44,9 @@ class _HakkindaState extends State<Hakkinda> {
                       ),
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Text("Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3301456 kodlu MOBİL PROGRAMLAMA dersi kapsamında"
-                      " 203311090 numaralı Bünyamin Gençtürk tarafından 30 Nisan 2021 günü yapılmıştır."								
+                      child: Text("Bu uygulama Dr. Öğretim Üyesi Ahmet Cevahir ÇINAR tarafından yürütülen 3301456 "
+                          "kodlu MOBİL PROGRAMLAMA dersi kapsamında 203311090 numaralı Bünyamin Gençtürk tarafından "
+                          "25 Haziran 2021 günü yapılmıştır."
                       ,style: TextStyle(fontFamily: 'RobotoMono',fontSize: 14,fontWeight:FontWeight.bold,),
                       ),
                     ),
