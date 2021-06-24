@@ -78,7 +78,7 @@ class _HakkindaState extends State<Hakkinda> {
                         padding: const EdgeInsets.only(left:70.0,right:70.0),
                         child: ElevatedButton( //ANASAYFAYA DÖNDÜRÜR
                           onPressed: () {
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, '/homepage');
                           },
                           child: Text('Anasayfaya Dön'),
                         ),
