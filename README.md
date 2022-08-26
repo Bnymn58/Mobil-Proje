@@ -1,1 +1,1 @@
-# Mobil-Proje
+# Mobil-Proje (Kişisel Asistanım Uygulaması)
